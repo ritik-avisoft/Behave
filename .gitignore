@@ -1,0 +1,47 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+
+# Virtual environments
+venv/
+env/
+.venv/
+.env
+.env.*
+
+# Test artifacts
+output/
+reports/
+test-results/
+allure-results/
+allure-report/
+report.html
+
+# Coverage
+.coverage
+htmlcov/
+
+# OS / editor files
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+*.swp
+*.swo
+
+# Logs and temp files
+*.log
+*.tmp
+
+# Secrets
+*.key
+*.pem
+*.crt
+*.secret
+secrets.yaml
+
+# Local helper scripts
+generate_key.py
+encrypt_once.py
