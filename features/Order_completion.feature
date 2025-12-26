@@ -1,13 +1,13 @@
-Feature: Order place
+Feature: Order Placement Process Verification     
+
     Background: 
         Given User on the login page
         When "standard" user enter correct login credentials
         Then User should be on product page
         
     @order_place
-    Scenario: verify order place process
-        Given add "bike" in the cart
-        And add "tshirt" in the cart
+    Scenario: Veried user can successfully place order with multiple items
+        Given add "tshirt" in the cart
         When user clicked on cart icon
         And products are visible
         And user clicked on checkout

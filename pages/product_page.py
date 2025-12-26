@@ -126,5 +126,54 @@ class Product:
             f"but found {len(unique_images)} different images"
         )
     
-    # def compare_price_on_inventort_and_product_price(self,actual_price:str):
-    #     self.page.locator(f"")
+    def verify_all_products_displayed(self):
+        expect(self.product_img).to_have_count(6)
+    
+    def verify_product_images(self):
+        for img in self.product_img.all():
+            expect(img).to_be_visible()
+    
+    def verify_product_titles(self):
+        for title in self.product_title_name.all():
+            expect(title).to_be_visible()
+    
+    def verify_product_prices(self):
+        prices = self.page.locator(".inventory_item_price")
+        for price in prices.all():
+            expect(price).to_be_visible()
+    
+    def verify_add_to_cart_buttons(self):
+        buttons = self.page.locator("[id^='add-to-cart']")
+        for button in buttons.all():
+            expect(button).to_be_visible()
+    
+    def click_sort_dropdown(self):
+        self.sort_product.click()
+    
+    def verify_sort_options(self, expected_options):
+        options = self.sort_product.locator("option").all_text_contents()
+        assert options == expected_options
+    
+    def select_sort_option(self):
+        self.sort_product.select_option("az")
+    
+    def verify_products_sorted(self):
+        titles = self.product_title_name.all_text_contents()
+        sorted_titles = sorted(titles)
+        assert titles == sorted_titles
+    
+    def click_on_product(self):
+        self.product_title_name.first.click()
+    
+    def verify_detailed_product_info(self):
+        expect(self.page.locator(".inventory_details_name")).to_be_visible()
+    
+    def verify_product_description(self):
+        expect(self.page.locator(".inventory_details_desc")).to_be_visible()
+    
+    def verify_product_price(self):
+        expect(self.page.locator(".inventory_details_price")).to_be_visible()
+    
+    def verify_add_to_cart_button(self):
+        expect(self.inside_product_add_to_cart).to_be_visible()
+

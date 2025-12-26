@@ -16,11 +16,18 @@ class login:
         expect(self.page).to_have_url("https://www.saucedemo.com/")
 
     def logged_in(self,USER, encrypted_password):
-        real_password = decrypt(encrypted_password)
-
-        self.page.wait_for_timeout(1000)
-        self.user_name.fill(td.USERS[USER])
-        self.user_pass.fill(real_password)
+        
+        # Check if USER is a key in td.USERS (valid user) or raw username
+        if USER in td.USERS:
+            username = td.USERS[USER]
+            password = decrypt(encrypted_password)
+        else:
+            # Handle raw username and password for invalid credentials
+            username = USER
+            password = encrypted_password
+        
+        self.user_name.fill(username)
+        self.user_pass.fill(password)
         self.login_submit_btn.click()
         self.page.wait_for_timeout(2000)
         return self.page
@@ -53,3 +60,29 @@ class login:
     def verify_login_error_message(self):
         expect(self.login_err).to_be_visible()
         expect(self.login_err).to_have_text(td.expected_error_message)
+
+    def login_with_blank_credentials(self):
+        self.user_name.fill("")
+        self.user_pass.fill("")
+        self.login_submit_btn.click()
+        
+    def login_with_blank_username(self, password):
+        self.user_name.fill("")
+        self.user_pass.fill(decrypt(password))
+        self.login_submit_btn.click()
+        
+    def login_with_invalid_password(self, username):
+        self.user_name.fill(td.USERS[username])
+        self.user_pass.fill("invalid_password")
+        self.login_submit_btn.click()
+        
+    def verify_blank_credentials_error(self):
+        expect(self.login_err).to_be_visible()
+        expect(self.login_err).to_have_text(td.blank_credentials_error)
+        
+    def verify_blank_username_error(self):
+        expect(self.login_err).to_be_visible()
+        expect(self.login_err).to_have_text(td.blank_credentials_error)
+
+
+

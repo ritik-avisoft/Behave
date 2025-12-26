@@ -4,10 +4,14 @@ from utils.test_data import Test_data as td
 from pages.product_page import Product
 import logging
 
-
+@given('I am on the login page')
+def user_on_login_page(context):
+    context.on_login=login(context.page)
+    context.on_login.on_login_page()
+    logging.info('user on the login page...')
 
 @given('User on the login page')
-def user_on_login_page(context):
+def user_on_login_page_alt(context):
     context.on_login=login(context.page)
     context.on_login.on_login_page()
     logging.info('user on the login page...')
@@ -42,3 +46,35 @@ def verify_product_page(context):
     context.on_product_page=Product(context.page)
     context.on_product_page.validate_products_page_loaded()
     logging.info('product page verified...')
+
+
+@when('I keep username and password blank')
+def user_enters_blank_credentials(context):
+    context.on_login.login_with_blank_credentials()
+    logging.info('user entered blank credentials...')
+
+@when('I keep blank username and fill valid password')
+def user_enters_blank_username(context):
+    context.on_login.login_with_blank_username(td.PASSWORD_ENCRYPTED)
+    logging.info('user entered blank username...')
+
+@when('I filled valid username and invalid password')
+def user_enters_invalid_password(context):
+    context.on_login.login_with_invalid_password("standard")
+    logging.info('user entered invalid password...')
+
+@then('User should see error message for blank credentials')
+def verify_blank_credentials_error(context):
+    context.on_login.verify_blank_credentials_error()
+    logging.info('blank credentials error verified...')
+
+@then('User should see error message for blank username')
+def verify_blank_username_error(context):
+    context.on_login.verify_blank_username_error()
+    logging.info('blank username error verified...')
+
+@then('User should see error message for invalid credentials')
+def verify_invalid_credentials_error(context):
+    context.on_login.verify_login_error_message()
+    logging.info('invalid credentials error verified...')
+

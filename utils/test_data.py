@@ -17,14 +17,15 @@ class Test_data:
     "visual": "visual_user"
     }
     
-    PASSWORD_ENCRYPTED = "gAAAAABpSTclGNsose33VLJvWiPxsCx-NkgXJ3E9WjUjHSZOB0euh2ki4WNMBtKrwQ-BLRfYiG4h-973LaH_xIR2MH1_rgQH_g=="
+    PASSWORD_ENCRYPTED = "gAAAAABpSjmSeVoY8lLSvv6bIMv7x0AA1cevJaucE0aaEcLsYj4_V8So4N6XFFpznwlLeh-RIbjJGCk4cE849bJHMlZqMf4Lpw=="
 
     INCORRECT_PASSWORD_ENCRYPTED= "hfnieuhfiobewalnisnd[cwopfivno sds sdlnpwdfnjpewfcew==!!8764%^&*"
 
     expected_error_message= " Epic sadface: Username and password do not match any user in this service"
 
     locked_out_error_message=" Epic sadface: Sorry, this user has been locked out."
-    
+    blank_credentials_error="Epic sadface: Username is required"
+
     PRODUCTS = {
         "backpack": {
             "add_id": "add-to-cart-sauce-labs-backpack",

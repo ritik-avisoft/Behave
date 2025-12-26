@@ -45,3 +45,4 @@ secrets.yaml
 # Local helper scripts
 generate_key.py
 encrypt_once.py
+secret_key.py

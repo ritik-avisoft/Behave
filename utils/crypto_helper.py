@@ -1,5 +1,9 @@
 import os
+from dotenv import load_dotenv
 from cryptography.fernet import Fernet
+
+# Load .env file ONCE, at import time
+load_dotenv()
 
 def get_cipher():
     key = os.getenv("SAUCE_SECRET_KEY")
@@ -7,11 +11,9 @@ def get_cipher():
         raise RuntimeError("SAUCE_SECRET_KEY not set")
     return Fernet(key.encode())
 
-
 def encrypt(text: str) -> str:
     cipher = get_cipher()
     return cipher.encrypt(text.encode()).decode()
-
 
 def decrypt(token: str) -> str:
     cipher = get_cipher()
