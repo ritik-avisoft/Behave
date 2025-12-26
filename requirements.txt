@@ -1,0 +1,14 @@
+# Core BDD framework
+behave==1.2.6
+
+# Browser automation
+playwright==1.43.0
+
+# Allure reporting for Behave
+allure-behave==2.13.5
+
+# Encryption / Decryption
+cryptography==42.0.5
+
+# Optional but recommended (logging, env handling)
+python-dotenv==1.0.1
