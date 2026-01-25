@@ -152,7 +152,7 @@ class Product:
     
     def verify_sort_options(self, expected_options):
         options = self.sort_product.locator("option").all_text_contents()
-        assert options == expected_options
+        assert options == expected_options, f"Options mismatch: Expected {expected_options}, Got {options}"
     
     def select_sort_option(self):
         self.sort_product.select_option("az")

@@ -17,7 +17,7 @@ class Test_data:
     "visual": "visual_user"
     }
     
-    PASSWORD_ENCRYPTED = "gAAAAABpSjmSeVoY8lLSvv6bIMv7x0AA1cevJaucE0aaEcLsYj4_V8So4N6XFFpznwlLeh-RIbjJGCk4cE849bJHMlZqMf4Lpw=="
+    PASSWORD_ENCRYPTED = "gAAAAABpdfsrqYJ5CHcgpjXfB7Yc5ln4ajYQz45sn7iyafEL4NVhdrCv-SisAAaNc5fKr1IIlEOf0ESzuFD0Qzs19l2PQz6SFQ=="
 
     INCORRECT_PASSWORD_ENCRYPTED= "hfnieuhfiobewalnisnd[cwopfivno sds sdlnpwdfnjpewfcew==!!8764%^&*"
 

@@ -7,6 +7,12 @@ def user_on_product_page(context):
     context.on_product_page.validate_products_page_loaded()
     logging.info('user on the product page...')
 
+@given('User is on the product page')
+def user_is_on_product_page(context):
+    context.on_product_page=Product(context.page)
+    context.on_product_page.validate_products_page_loaded()
+    logging.info('user is on the product page...')
+
 @then('User should see all products displayed')
 def verify_all_products_displayed(context):
     context.on_product_page.verify_all_products_displayed()
@@ -39,7 +45,8 @@ def click_sort_dropdown(context):
 
 @then('User should see following sort options')
 def verify_sort_options(context):
-    expected_options = [row[0] for row in context.table]
+    # Include header row as well since it's data, not a header
+    expected_options = [context.table.headings[0]] + [row[0] for row in context.table]
     context.on_product_page.verify_sort_options(expected_options)
     logging.info('sort options verified...')
 

@@ -1,6 +1,6 @@
 from behave import *
 from pages.cart_page import Cart
-from behave.api.pending_step import StepNotImplementedError
+# from behave.api.pending_step import StepNotImplementedError
 import logging
 
 @when('user enter the shipping information')
@@ -16,6 +16,11 @@ def verify_order_overview(context):
 
 @then('user should be able to place the order')
 def place_the_order(context):
+    # Verify order details and complete the order
+    context.fill_details.order_overview()
+    logging.info('Order details verified...')
+    
+    # Complete the order
     context.fill_details.finish_order()
     logging.info('Order placed successfully...')
 

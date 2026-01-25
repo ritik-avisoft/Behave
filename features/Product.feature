@@ -5,7 +5,6 @@ Feature: Product page
         When "standard" user enter correct login credentials
         Then User should be on product page
 
-    @product_test
     Scenario: Product listing verification
         Given I am on the product page
         Then User should see all products displayed
